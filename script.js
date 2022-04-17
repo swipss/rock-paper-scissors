@@ -2,12 +2,17 @@ const turns = ['rock', 'paper', 'scissors']
 let computerScore = 0;
 let playerScore = 0;
 
-
+const body = document.querySelector('body')
 const buttons = document.querySelectorAll('button')
 buttons.forEach((button) => {
     button.addEventListener('click', () => {
         const computerSelection = computerPlay()
         console.log(playRound(button.id.toLowerCase(), computerSelection))
+        const div = document.createElement('div')
+        const para =  document.createElement('p')
+        para.textContent = `Your score: ${playerScore} Computer score: ${computerScore}`
+        div.appendChild(para)
+        body.appendChild(div)
     })
 })
 
