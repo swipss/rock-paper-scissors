@@ -2,10 +2,22 @@ const turns = ['rock', 'paper', 'scissors']
 let computerScore = 0;
 let playerScore = 0;
 
+
+const buttons = document.querySelectorAll('button')
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+        const computerSelection = computerPlay()
+        console.log(playRound(button.id.toLowerCase(), computerSelection))
+    })
+})
+
+
+
+
+
 function computerPlay() {
     return turns[Math.floor(Math.random() * 3)]
 }
-// console.log(coumputerPlay())
 
 function playRound(playerSelection, computerSelection) {
     
@@ -54,8 +66,6 @@ function game(){
         console.log('You lost! The computer won.')
     }
 }
-game()
-// const playerSelection = 'rock'
-// const computerSelection = coumputerPlay()
 
-// console.log(playRound(playerSelection.toLowerCase(), computerSelection))
+
+
