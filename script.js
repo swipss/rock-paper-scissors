@@ -4,15 +4,27 @@ let playerScore = 0;
 
 const body = document.querySelector('body')
 const buttons = document.querySelectorAll('button')
+const div = document.createElement('div')
+
 buttons.forEach((button) => {
     button.addEventListener('click', () => {
-        const computerSelection = computerPlay()
+        let computerSelection = computerPlay()
         console.log(playRound(button.id.toLowerCase(), computerSelection))
-        const div = document.createElement('div')
-        const para =  document.createElement('p')
-        para.textContent = `Your score: ${playerScore} Computer score: ${computerScore}`
+        console.log(playerScore, computerScore)
+        const para = document.createElement('p')
+        para.textContent += `Your score: ${playerScore} Computer score: ${computerScore}`
+        
+        if (playerScore >= 5) {
+            para.textContent = 'You won!'
+            
+            // button.removeventListener('click')
+        }
+        if (computerScore >= 5) {
+            para.textContent = 'You lost! The computer won.'
+        }
         div.appendChild(para)
         body.appendChild(div)
+        
     })
 })
 
@@ -55,7 +67,6 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function game(){
-    
     for (let i = 0; i < 5; i++){
         
         let playerSelection = prompt("Your choice (rock, paper, scissors): ")
@@ -63,6 +74,8 @@ function game(){
         console.log(playRound(playerSelection.toLowerCase(), computerSelection))
         console.log(`Player score: ${playerScore}\nComputer score: ${computerScore}`)
     }
+    
+    
     if (playerScore > computerScore) {
         console.log("You won! The computer lost.")
     } else if (playerScore == computerScore) {
@@ -70,7 +83,11 @@ function game(){
     } else {
         console.log('You lost! The computer won.')
     }
-}
+
+    }
+    
+
+// game()
 
 
 
